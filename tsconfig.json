@@ -7,8 +7,9 @@
     "jsx": "react-jsx",
     "allowJs": true,
     "strict": true,
+    "resolveJsonModule": true,
     "moduleResolution": "node",
-    "baseUrl": "./src",
+    "baseUrl": "./src/",
     "plugins": [
       {
         "name": "typescript-plugin-css-modules"
@@ -23,7 +24,6 @@
     },
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
-    //    "skipLibCheck": true
   },
   "ts-node": {
     "compilerOptions": {

@@ -3,6 +3,7 @@ const HTMLWebpackplugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
+	mode: 'development',
 	entry: './src/index.tsx',
 	output: {
 		path: path.resolve(__dirname, 'dist'),
@@ -11,7 +12,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.tsx?$/,
+				test: /\.(tsx|ts)$/,
 				use: 'ts-loader',
 				exclude: /node_modules/,
 			},
@@ -20,8 +21,12 @@ module.exports = {
 				use: ['style-loader', 'css-loader']
 			},
 			{
+				test: /\.png$/,
+				loader: 'file-loader'
+			},
+			{
 				test: /\.s[ac]ss$/i,
-				use: ["style-loader", "css-loader", {
+				use: ["style-loader", {
 					loader: "css-loader",
 					options: {
 						modules: {
@@ -31,23 +36,14 @@ module.exports = {
 					},
 				}, "sass-loader"]
 			},
-			{
-				test: /\.(ts|tsx)$/,
-				exclude: /node_modules/,
-				use: {
-					loader: "babel-loader",
-					options: {
-						presets: [
-							"@babel/preset-env",
-							"@babel/preset-typescript"
-						]
-					}
-				},
-			}
 		],
 	},
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
+		alias: {
+			assets: path.resolve(__dirname, 'src/assets'),
+			helpers: path.resolve(__dirname, 'src/helpers'),
+		}
 	},
 	plugins: [
 		new HTMLWebpackplugin({
@@ -55,5 +51,12 @@ module.exports = {
 			template: "./src/index.html"
 		}),
 		new CleanWebpackPlugin({})
-	]
+	],
+	devServer: {
+		static: {
+			directory: path.join(__dirname, 'dist'),
+		},
+		compress: true,
+		port: 9000,
+	},
 };

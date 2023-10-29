@@ -1,8 +1,11 @@
-import React from 'react';
+import style from './styles/header.module.scss';
+import Logo from "./components/Logo";
 
 const Header = () => {
   return (
-    <header>Header</header>
+    <header className={style['header-wrapper']}>
+      <Logo />
+    </header>
   )
 }
 

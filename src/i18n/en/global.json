@@ -1,0 +1,12 @@
+{
+  "header": {
+    "logo": "translation agency",
+    "navigation": {
+      "1": "services",
+      "2": "price",
+      "3": "about us",
+      "4": "contacts"
+    },
+    "button": "order a service"
+  }
+}
